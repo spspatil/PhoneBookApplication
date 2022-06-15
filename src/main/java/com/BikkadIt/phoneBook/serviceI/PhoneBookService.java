@@ -13,5 +13,6 @@ public interface PhoneBookService {
 	
 	String deleteById(Integer id);
 	String deletecontact(Contact contact);
+	String updateContact(Contact contact);
 
 }

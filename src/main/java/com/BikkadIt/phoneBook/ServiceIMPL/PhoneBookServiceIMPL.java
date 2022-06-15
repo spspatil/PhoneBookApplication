@@ -66,6 +66,14 @@ public class PhoneBookServiceIMPL implements PhoneBookService{
 		contactRepository.delete(contact);
 		return "deleted contact";
 	}
+
+	@Override
+	public String updateContact(Contact contact) {
+		// TODO Auto-generated method stub
+		
+		Contact save = contactRepository.save(contact);
+		return "contact upadted";
+	}
 	
 	
 	
