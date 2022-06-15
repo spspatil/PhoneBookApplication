@@ -66,4 +66,11 @@ public class PhoneBookController {
 		return new ResponseEntity<String>(deleteById, HttpStatus.OK);
 	}
 
+	
+	@DeleteMapping(value = "/deleteContact")
+	public ResponseEntity<String> deleteContact(@RequestBody Contact contact){
+		 String deletecontact = phoneBookServiceIMPL.deletecontact(contact);
+		
+		 return new ResponseEntity<String>(deletecontact, HttpStatus.OK);
+	}
 }

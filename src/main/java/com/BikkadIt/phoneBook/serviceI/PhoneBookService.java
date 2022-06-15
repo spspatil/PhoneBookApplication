@@ -12,5 +12,6 @@ public interface PhoneBookService {
 	Optional<Contact>  viewByid(Integer id);
 	
 	String deleteById(Integer id);
+	String deletecontact(Contact contact);
 
 }

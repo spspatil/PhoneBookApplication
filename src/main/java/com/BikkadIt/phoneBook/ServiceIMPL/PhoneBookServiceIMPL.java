@@ -6,7 +6,10 @@ import java.util.Optional;
 import javax.servlet.http.Cookie;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.BikkadIt.phoneBook.Model.Contact;
 import com.BikkadIt.phoneBook.Repository.ContactRepository;
@@ -55,6 +58,16 @@ public class PhoneBookServiceIMPL implements PhoneBookService{
 		
 		return "contact deleted ";
 	}
+
+	@Override
+	public String deletecontact(Contact contact) {
+		// TODO Auto-generated method stub
+		
+		contactRepository.delete(contact);
+		return "deleted contact";
+	}
+	
+	
 	
 	
 
