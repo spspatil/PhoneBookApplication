@@ -31,7 +31,9 @@ public class PhoneBookServiceIMPL implements PhoneBookService{
 	@Override
 	public List<Contact> viewContacts() {
 		// TODO Auto-generated method stub
-		return null;
+		List<Contact> findAll = contactRepository.findAll();
+		
+		return findAll;
 	}
 
 	@Override
