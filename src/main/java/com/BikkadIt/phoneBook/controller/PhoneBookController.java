@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -55,6 +56,14 @@ public class PhoneBookController {
 		
 		return new ResponseEntity<Optional<Contact>>(viewByid, HttpStatus.OK);
 		
+	}
+	
+	@DeleteMapping(value = "/deleteByID/{id}")
+	public ResponseEntity<String> deleteContactById(@PathVariable Integer id){
+		
+		String deleteById = phoneBookServiceIMPL.deleteById(id);
+		
+		return new ResponseEntity<String>(deleteById, HttpStatus.OK);
 	}
 
 }

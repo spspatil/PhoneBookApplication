@@ -10,5 +10,7 @@ public interface PhoneBookService {
 	boolean saveContact(Contact contact);
 	List<Contact> viewContacts();
 	Optional<Contact>  viewByid(Integer id);
+	
+	String deleteById(Integer id);
 
 }

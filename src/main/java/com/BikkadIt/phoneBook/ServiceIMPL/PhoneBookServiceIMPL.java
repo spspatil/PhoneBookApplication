@@ -45,6 +45,16 @@ public class PhoneBookServiceIMPL implements PhoneBookService{
 		Optional<Contact> findById = contactRepository.findById(id);
 		return findById;
 	}
+
+	@Override
+	public String deleteById(Integer id) {
+		// TODO Auto-generated method stub
+		
+		contactRepository.deleteById(id);
+		
+		
+		return "contact deleted ";
+	}
 	
 	
 
