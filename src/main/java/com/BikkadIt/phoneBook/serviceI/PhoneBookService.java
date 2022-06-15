@@ -1,6 +1,7 @@
 package com.BikkadIt.phoneBook.serviceI;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.BikkadIt.phoneBook.Model.Contact;
 
@@ -8,6 +9,6 @@ public interface PhoneBookService {
 	
 	boolean saveContact(Contact contact);
 	List<Contact> viewContacts();
-	 Contact viewByid(Integer id);
+	Optional<Contact>  viewByid(Integer id);
 
 }

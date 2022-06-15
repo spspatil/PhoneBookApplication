@@ -1,6 +1,9 @@
 package com.BikkadIt.phoneBook.ServiceIMPL;
 
 import java.util.List;
+import java.util.Optional;
+
+import javax.servlet.http.Cookie;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,9 +40,10 @@ public class PhoneBookServiceIMPL implements PhoneBookService{
 	}
 
 	@Override
-	public Contact viewByid(Integer id) {
+	public Optional<Contact> viewByid(Integer id) {
 		// TODO Auto-generated method stub
-		return null;
+		Optional<Contact> findById = contactRepository.findById(id);
+		return findById;
 	}
 	
 	

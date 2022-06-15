@@ -2,11 +2,13 @@ package com.BikkadIt.phoneBook.controller;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,12 +39,21 @@ public class PhoneBookController {
 		
 	}
 	
-	@GetMapping(value = "/viewContact" ,consumes = "application/json")
+	@GetMapping(value = "/viewContact")
 	public ResponseEntity<List<Contact>> viewContact(){
 		
 		List<Contact> viewContacts = phoneBookServiceIMPL.viewContacts();
 		
 		return new ResponseEntity<List<Contact>>(viewContacts, HttpStatus.OK);
+		
+	}
+	
+	@GetMapping(value = "/contactByid/{id}")
+	public ResponseEntity<Optional<Contact>> viewContactByID(@PathVariable Integer id){
+		
+		Optional<Contact> viewByid = phoneBookServiceIMPL.viewByid(id);
+		
+		return new ResponseEntity<Optional<Contact>>(viewByid, HttpStatus.OK);
 		
 	}
 
