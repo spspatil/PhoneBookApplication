@@ -2,23 +2,38 @@ package com.BikkadIt.phoneBook.Model;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
 public class Contact {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "CONTACT_ID")
 	private Integer contact_Id;
 	
+	@Column(name = "CONTACT_NAME")
 	private String contact_Name;
 	
+	@Column(name = "CONTACT_MAILD")
 	private String contact_MailId;
 	
+	@Column(name = "CONTACT_NUMBER")
 	private String contact_Number;
 	
+	@CreationTimestamp()
+	@Column(name = "CREATED_DATE", updatable = false)
 	private LocalDate createdDate;
 	
+	@UpdateTimestamp
+	@Column(name = "UPDATED_DATE" , insertable = false)
 	private LocalDate updatedDate;
 
 	public Integer getContact_Id() {
