@@ -28,6 +28,8 @@ public class PhoneBookController {
 	@PostMapping(value = "/saveContact" ,consumes = "application/json")
 	public ResponseEntity<String> saveContact(@RequestBody Contact contact){
 		
+		System.out.println(contact);
+		
 		boolean saveContact = phoneBookServiceIMPL.saveContact(contact);
 		
 		if(saveContact) {
@@ -45,7 +47,15 @@ public class PhoneBookController {
 		
 		List<Contact> viewContacts = phoneBookServiceIMPL.viewContacts();
 		
-		return new ResponseEntity<List<Contact>>(viewContacts, HttpStatus.OK);
+		if(viewContacts!=null) {
+			return new ResponseEntity<List<Contact>>(viewContacts, HttpStatus.OK);
+		}else
+		{
+			String msg="Data Not found";
+		return new ResponseEntity(msg,HttpStatus.BAD_REQUEST);
+		}
+		
+		
 		
 	}
 	

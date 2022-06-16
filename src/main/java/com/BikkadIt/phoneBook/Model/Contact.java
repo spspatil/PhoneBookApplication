@@ -28,6 +28,24 @@ public class Contact {
 	@Column(name = "CONTACT_NUMBER")
 	private String contact_Number;
 	
+	@Column(name = "ACTIVE_SWITCH")
+	private Character activeSwitch;
+	
+	@Override
+	public String toString() {
+		return "Contact [contact_Id=" + contact_Id + ", contact_Name=" + contact_Name + ", contact_MailId="
+				+ contact_MailId + ", contact_Number=" + contact_Number + ", activeSwitch=" + activeSwitch
+				+ ", createdDate=" + createdDate + ", updatedDate=" + updatedDate + "]";
+	}
+
+	public Character getActiveSwitch() {
+		return activeSwitch;
+	}
+
+	public void setActiveSwitch(Character activeSwitch) {
+		this.activeSwitch = activeSwitch;
+	}
+
 	@CreationTimestamp()
 	@Column(name = "CREATED_DATE", updatable = false)
 	private LocalDate createdDate;
