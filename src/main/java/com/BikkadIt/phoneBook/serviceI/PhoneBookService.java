@@ -11,7 +11,7 @@ public interface PhoneBookService {
 	List<Contact> viewContacts();
 	Optional<Contact>  viewByid(Integer id);
 	
-	String deleteById(Integer id);
+	boolean deleteById(Integer id);
 	String deletecontact(Contact contact);
 	String updateContact(Contact contact);
 

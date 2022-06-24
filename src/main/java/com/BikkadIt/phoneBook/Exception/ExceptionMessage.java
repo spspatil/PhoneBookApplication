@@ -1,17 +1,21 @@
 package com.BikkadIt.phoneBook.Exception;
 
+import java.util.Date;
+
 public class ExceptionMessage {
 	
 	
-	private int errorCode;
+	private String errorCode;
 	
 	private String message;
+	
+	private Date date;
 
-	public int getErrorCode() {
+	public String getErrorCode() {
 		return errorCode;
 	}
 
-	public void setErrorCode(int errorCode) {
+	public void setErrorCode(String errorCode) {
 		this.errorCode = errorCode;
 	}
 
@@ -22,7 +26,17 @@ public class ExceptionMessage {
 	public void setMessage(String message) {
 		this.message = message;
 	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
 	
+	
+
 	
 
 }

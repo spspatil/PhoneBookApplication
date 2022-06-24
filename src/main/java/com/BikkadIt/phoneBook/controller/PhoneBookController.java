@@ -2,6 +2,7 @@ package com.BikkadIt.phoneBook.controller;
 
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,13 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.BikkadIt.phoneBook.Exception.DataNotFound;
 import com.BikkadIt.phoneBook.Model.Contact;
 import com.BikkadIt.phoneBook.ServiceIMPL.PhoneBookServiceIMPL;
+import com.BikkadIt.phoneBook.props.AppConstansts;
+import com.BikkadIt.phoneBook.props.AppProps;
+
+
 
 
 @RestController
@@ -25,8 +31,11 @@ public class PhoneBookController {
 	@Autowired
 	private PhoneBookServiceIMPL phoneBookServiceIMPL;
 	
+	@Autowired
+	private AppProps appProps;
+	
 	@PostMapping(value = "/saveContact" ,consumes = "application/json")
-	public ResponseEntity<String> saveContact(@RequestBody Contact contact){
+	public ResponseEntity<String> saveContact( @RequestBody Contact contact){
 		
 		System.out.println(contact);
 		
@@ -42,17 +51,17 @@ public class PhoneBookController {
 		
 	}
 	
+	
 	@GetMapping(value = "/viewContact")
 	public ResponseEntity<List<Contact>> viewContact(){
 		
 		List<Contact> viewContacts = phoneBookServiceIMPL.viewContacts();
 		
-		if(viewContacts!=null) {
+		if(!viewContacts.isEmpty()) {
 			return new ResponseEntity<List<Contact>>(viewContacts, HttpStatus.OK);
 		}else
 		{
-			String msg="Data Not found";
-		return new ResponseEntity(msg,HttpStatus.BAD_REQUEST);
+		   throw new DataNotFound("no data available in table");
 		}
 		
 		
@@ -68,12 +77,20 @@ public class PhoneBookController {
 		
 	}
 	
+	
 	@DeleteMapping(value = "/deleteByID/{id}")
-	public ResponseEntity<String> deleteContactById(@PathVariable Integer id){
+	public String deleteContactById(@PathVariable Integer id){
 		
-		String deleteById = phoneBookServiceIMPL.deleteById(id);
+		Map<String,String> messages = appProps.getMessages();
 		
-		return new ResponseEntity<String>(deleteById, HttpStatus.OK);
+		boolean deleteById = phoneBookServiceIMPL.deleteById(id);
+		
+		if(deleteById==true) {
+			
+			return messages.get(AppConstansts.DELETED);
+		}
+		
+		return messages.get(AppConstansts.NOT_DELETED);
 	}
 
 	
@@ -83,7 +100,7 @@ public class PhoneBookController {
 		
 		 return new ResponseEntity<String>(deletecontact, HttpStatus.OK);
 	}
-	
+
 	@PutMapping(value = "/updateContact")
 	public ResponseEntity<String> upadteContact(@RequestBody Contact contact){
 		
